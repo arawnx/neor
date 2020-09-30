@@ -1,0 +1,29 @@
+:host {
+    flex-grow: 2;
+    font-weight: 600;
+    min-width: 250px;
+    height: 100%;
+    background-color: rgba(0,0,0,0.15);
+}
+
+li {
+    list-style-type: none;
+    -webkit-user-select: none;  
+    padding: 1em 0em 1em 1em;
+    margin: 0;
+}
+
+:host ::ng-deep fa-icon {
+    padding-left: 1em;
+    pointer-events: none;
+}
+
+ul {
+    cursor: default;
+    margin: 0;
+    padding: 0;
+}
+
+.is-selected {
+    background-color: rgba(0,0,0,0.05);
+}

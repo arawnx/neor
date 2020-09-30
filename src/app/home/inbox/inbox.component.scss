@@ -1,0 +1,63 @@
+$highlight: rgba(255,255,255,0.3);
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+.highlight {
+    background-color: $highlight;
+}
+
+li {
+    cursor: pointer;
+    list-style: none;
+    margin: 0;
+    padding: 2em 2em 2em 2em;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:hover {
+        @extend .highlight;
+    }
+}
+
+.itemText {
+    font-size: 18px;
+}
+
+span {
+    @extend .itemText;
+    // padding-right: 80%;
+}
+
+fa-icon {
+    pointer-events: none;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    margin: 2em 0 0 2em;
+    cursor: pointer;
+}
+
+input {
+    @extend .itemText;
+    padding: 0;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.organizeIcons {
+    direction: rtl;
+    float: right;
+    padding: 0;
+    margin: 0;
+
+    > fa-icon {
+        padding: 0 1em 0 1em;
+    }
+}

@@ -9,6 +9,7 @@ import * as fs from 'fs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ElectronService {
   ipcRenderer: typeof ipcRenderer;
   webFrame: typeof webFrame;
