@@ -1,3 +1,9 @@
 <div>
-    <app-inbox (inboxUpdate)="inboxUpdate($event)" [items]="[{id:0,name:'hi'}]" *ngIf="activeDest === 'inbox'"></app-inbox>
+    <app-inbox 
+        [(model)]="this.model" 
+        *ngIf="activeDest === 'inbox'"></app-inbox>
+    <app-archive
+        [(model)]="this.model"
+        *ngIf="activeDest === 'archive'"></app-archive>
+    <!-- TODO: Add other destination code -->
 </div>

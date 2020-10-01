@@ -1,10 +1,13 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, ipcMain, screen } from 'electron';
+import * as fs from 'fs';
 import * as path from 'path';
 import * as url from 'url';
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
+
+const modelPath = path.join(app.getPath('userData'), "model.json");
 
 function createWindow(): BrowserWindow {
 
@@ -41,6 +44,37 @@ function createWindow(): BrowserWindow {
       protocol: 'file:',
       slashes: true
     }));
+  }
+
+  // Validate data directories
+  if(fs.existsSync(app.getPath('userData'))) {
+    console.log('User data path exists...');
+    let modprotype = {
+      inbox: {
+        items: []
+      },
+      archive: {
+        items: [
+          {
+            name: "Example archive item",
+            history: {
+              previousDest: 'inbox',
+              metadata: undefined
+            }
+          }
+        ]
+      }
+    };
+    if(fs.existsSync(modelPath)) {
+      console.log('Program model exists...');
+    } else {
+      console.log('Program model does not exist...');
+      // TODO: Model migration code
+      fs.appendFileSync(modelPath, JSON.stringify(modprotype));
+    }
+  } else {
+    console.log('User data path does not exist...');
+    fs.mkdirSync(app.getPath('userData'));
   }
 
   // Emitted when the window is closed.
@@ -82,3 +116,18 @@ try {
   // Catch Error
   // throw e;
 }
+
+ipcMain.on('read-model', (evt, arg) => {
+  console.log('Read model');
+  fs.readFile(modelPath, 'utf8', (_, data) => {
+    console.log('Reply model');
+    console.log(`Read: ${data}`)
+    evt.reply('reply-model', JSON.parse(data));
+  });
+});
+
+ipcMain.on('save-model', (_, model) => {
+  fs.writeFile(modelPath, model, () => {
+    console.log(`New model successfully saved as: \n${model}`);
+  });
+});

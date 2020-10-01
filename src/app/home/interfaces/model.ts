@@ -1,6 +1,16 @@
 export interface Model {
     inbox: {
-        name: string;
-        id: number;
+        items: {
+            name: string
+        }[]
+    },
+    archive: {
+        items: {
+            name: string,
+            history: {
+                prevDest: string,
+                metadata: any
+            }
+        }[]
     }
 }

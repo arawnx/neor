@@ -97,6 +97,9 @@
     "node": ">=10.13.0"
   },
   "dependencies": {
+    "@angular/animations": "^10.0.0 || ^11.0.0-0",
+    "@angular/cdk": "10.2.3",
+    "@angular/forms": "^10.0.0 || ^11.0.0-0",
     "@fortawesome/angular-fontawesome": "0.7.0",
     "@fortawesome/fontawesome-svg-core": "1.2.30",
     "@fortawesome/free-regular-svg-icons": "^5.13.0",

@@ -1,12 +1,6 @@
-$highlight: rgba(255,255,255,0.3);
-
 ul {
     padding: 0;
     margin: 0;
-}
-
-.highlight {
-    background-color: $highlight;
 }
 
 li {
@@ -15,46 +9,10 @@ li {
     margin: 0;
     padding: 2em 2em 2em 2em;
     width: calc(100% - 4em);
-
-    &:hover {
-        @extend .highlight;
-    }
-}
-
-.itemText {
-    font-size: 18px;
-    vertical-align: middle;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 fa-icon {
     pointer-events: none;
-}
-
-button {
-    border: none;
-    background-color: transparent;
-    outline: none;
-    cursor: pointer;
-
-    &#add {
-        margin: 2em 0 2em 2em;
-    }
-
-    &:hover {
-        color: lighten($color: black, $amount: 33);
-    }
-}
-
-input {
-    font-size: 18px;
-    padding: 0;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: transparent;
-    outline: none;
-    border: none;
 }
 
 .organizeIcons {
@@ -68,6 +26,17 @@ input {
     }
 }
 
+button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+        color: lighten($color: black, $amount: 33);
+    }
+}
+
 .name {
     display: block;
     font-size: 18px;
@@ -78,6 +47,13 @@ input {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.subtitle {
+    display: inline-block;
+    font-size: 14px;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 0.5;
 }
 
 .flexbox {

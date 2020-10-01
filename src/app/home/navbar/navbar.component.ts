@@ -18,20 +18,20 @@ export class NavbarComponent implements OnInit {
 			icon: fas.faInbox
 		},
 		{
-			name: "calendar",
-			icon: fas.faCalendar
+			name: "next-actions",
+			icon: fas.faTasks
 		},
 		{
 			name: "projects",
 			icon: fas.faFolderOpen
 		},
 		{
-			name: "waiting",
-			icon: fas.faUserClock
+			name: "calendar",
+			icon: fas.faCalendar
 		},
 		{
-			name: "next-actions",
-			icon: fas.faTasks
+			name: "waiting",
+			icon: fas.faUserClock
 		},
 		{
 			name: "weekly-review",

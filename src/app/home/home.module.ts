@@ -12,9 +12,10 @@ import { DestinationComponent } from './destination/destination.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InboxComponent } from './inbox/inbox.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
-  declarations: [HomeComponent, NavbarComponent, DestinationComponent, InboxComponent, AutofocusDirective],
+  declarations: [HomeComponent, NavbarComponent, DestinationComponent, InboxComponent, AutofocusDirective, ArchiveComponent],
   imports: [CommonModule, SharedModule, HomeRoutingModule, FontAwesomeModule, CoreModule, FormsModule],
 })
 export class HomeModule {}

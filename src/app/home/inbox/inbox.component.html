@@ -1,15 +1,32 @@
 <div>
-    <ul *ngFor="let item of items">
-        <li *ngIf="!item.editing" (click)="editItem(item.id)">
-            <span>{{ item.name }}</span>
-            <div class="organizeIcons">
-                <fa-icon size="md" [icon]="fas.faInbox"></fa-icon>
-                <fa-icon size="md" [icon]="fas.faInbox"></fa-icon>
+    <ul>
+        <li *ngFor="let item of this.model.inbox.items; index as index" 
+            (click)="currentlyEditing = index">
+            <div *ngIf="index !== currentlyEditing" class="flexbox">
+                <div class="name">{{ item.name }}</div>
+                <div class="organizeIcons">
+                    <button (click)="organizeItem($event,'archive',index)">
+                        <fa-icon size="lg" [icon]="fas.faArchive"></fa-icon>
+                    </button>
+                    <button (click)="organizeItem($event,'weekly-review',index)">
+                        <fa-icon size="lg" [icon]="fas.faMountain"></fa-icon>
+                    </button>
+                    <button (click)="organizeItem($event,'waiting',index)">
+                        <fa-icon size="lg" [icon]="fas.faUserClock"></fa-icon>
+                    </button>
+                    <button (click)="organizeItem($event,'calendar',index)">
+                        <fa-icon size="lg" [icon]="fas.faCalendar"></fa-icon>
+                    </button>
+                    <button (click)="organizeItem($event,'projects',index)">
+                        <fa-icon size="lg" [icon]="fas.faFolderOpen"></fa-icon>
+                    </button>
+                    <button (click)="organizeItem($event,'next-actions',index)">
+                        <fa-icon size="lg" [icon]="fas.faTasks"></fa-icon>
+                    </button>
+                </div>
             </div>
-        </li>
-        <li class="highlight" highlight *ngIf="item.editing">
-            <input appAutofocus (blur)="clearEdits()" (keyup.enter)="clearEdits()" [(ngModel)]="item.name">
+            <input *ngIf="currentlyEditing === index" appAutofocus (blur)="clearEdits()" (keyup.enter)="clearEdits()" [(ngModel)]="item.name">
         </li>
     </ul>
-    <button (click)="addItem()"><fa-icon size="lg" [icon]="fas.faPlus"></fa-icon></button>
+    <button id="add" (click)="addItem()"><fa-icon size="lg" [icon]="fas.faPlus"></fa-icon></button>
 </div>

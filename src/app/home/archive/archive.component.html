@@ -1,0 +1,19 @@
+<div>
+    <ul>
+        <li *ngFor="let item of this.model.archive.items; index as index">
+            <div class="flexbox">
+                <div class="name">
+                    {{ item.name }} <i>(from {{ item.history.prevDest | uppercase }}</i>)
+                </div>
+                <div class="organizeIcons">
+                    <button (click)="restoreItem($event, index)">
+                        <fa-icon size="lg" [icon]="fas.faUndo"></fa-icon>
+                    </button>
+                    <button (click)="deletePermanently($event, index)">
+                        <fa-icon size="lg" [icon]="fas.faTrash"></fa-icon>
+                    </button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

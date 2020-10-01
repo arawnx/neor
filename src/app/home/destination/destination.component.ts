@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Model } from '../interfaces/model';
 
 @Component({
@@ -9,14 +9,10 @@ import { Model } from '../interfaces/model';
 
 export class DestinationComponent implements OnInit {
   @Input() activeDest: string = 'inbox';
-  @Input() models: Model;
+  @Input() model: Model;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  inboxUpdate(evt) {
-    console.log(evt);
   }
 }

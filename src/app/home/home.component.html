@@ -1,4 +1,11 @@
 <div>
   <app-navbar (destinationChange)='destinationChange($event)'></app-navbar>
-  <app-destination [activeDest]='activeDest'></app-destination>
+  <app-destination 
+  *ngIf="this.model !== undefined" 
+  [(model)]="this.model" 
+  [activeDest]='activeDest'></app-destination>
+  <h1 *ngIf="this.model === undefined">
+    Loading...
+  </h1>
 </div>
+  <!-- (updateModel)="updateModel($event)" -->

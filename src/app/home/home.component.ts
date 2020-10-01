@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ElectronService } from '../core/services';
-import { Model } from './interfaces/model';
 import { interval, Subscription } from 'rxjs';
-import { IpcRenderer } from 'electron';
+import { ipcRenderer, IpcRenderer } from 'electron';
+import { Model } from './interfaces/model';
 
 @Component({
   selector: 'app-home',
@@ -16,14 +16,19 @@ export class HomeComponent implements OnInit {
   model: Model;
   subscription: Subscription;
 
-  constructor(private router: Router, public electronService: ElectronService) { }
+  constructor(private router: Router, public electronService: ElectronService) { 
+    ipcRenderer.send('read-model');
+    ipcRenderer.on('reply-model', (_, _model) => {
+      this.model = _model;
+    });
+  }
 
   private saveModel() {
-    this.electronService.ipcRenderer.send('save-model', this.model);
+    this.electronService.ipcRenderer.send('save-model', JSON.stringify(this.model));
   }
 
   ngOnInit(): void { 
-    this.subscription = interval(5000).subscribe(_ => {
+    this.subscription = interval(500).subscribe(_ => {
       this.saveModel();
     });
   }
@@ -34,5 +39,12 @@ export class HomeComponent implements OnInit {
 
   destinationChange(newDest) {
     this.activeDest = newDest;
+  }
+
+  updateModel(update: {
+    key: string,
+    value: any
+  }) {
+    this.model[update.key] = update.value;
   }
 }

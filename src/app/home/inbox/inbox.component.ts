@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, HostListener } from '@angular/core';
 import * as fas from '@fortawesome/free-solid-svg-icons';
+import { Model } from '../interfaces/model';
 
 @Component({
   selector: 'app-inbox',
@@ -8,69 +9,40 @@ import * as fas from '@fortawesome/free-solid-svg-icons';
 })
 
 export class InboxComponent implements OnInit {
-  @Input() items: {
-    id: number;
-    name: string;
-    editing: boolean;
-  }[];
-  @Output() inboxUpdate = new EventEmitter();
+  @Input() model: Model;
 
-  @ViewChild('editInput') editInput: ElementRef;
+  currentlyEditing: number;
   
   fas = fas;
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.clearEdits();
-  }
-
-  ngOnDestroy() {
-    this.inboxUpdate.emit(this.items);
-  }
-
-  @HostListener('window:beforeunload', ['$event'])
-  beforeUnloadHandler() {
-    this.inboxUpdate.emit(this.items);
-  }
-
-  get nextId(): number {
-    let res = 0;
-    this.items.forEach(item => {
-      console.log(item.id);
-      if(item.id >= res)
-        res = item.id+1;
-    });
-    return res;
-  }
-
+  ngOnInit(): void { }
   addItem() {
-    this.clearEdits();
-    this.items.push({
-      id: this.nextId,
-      name: "",
-      editing: true
+    this.model.inbox.items.push({
+      name: ""
     });
-    console.log(this.items[this.items.length-1]);
-  }
-
-  editItem(id: number) {
-    this.items.forEach(item => {
-      if(item.id === id) {
-        item.editing = true;
-      } else {
-        item.editing = false;
-      }
-    });
+    this.currentlyEditing = this.model.inbox.items.length-1;
   }
 
   clearEdits() {
-    this.items.forEach(item => {
-      item.editing = false;
+    this.currentlyEditing = undefined;
+    this.model.inbox.items = this.model.inbox.items.filter(item => {
+      return item.name.trim() !== "";
     });
+  }
 
-    this.items.filter(item => {
-      item.name !== "";
-    })
+  organizeItem(evt, dest: string, index: number) {
+    evt.stopPropagation();
+    if(dest === 'archive') {
+      this.model.archive.items.unshift({
+        name: this.model.inbox.items[index].name,
+        history: {
+          prevDest: 'inbox',
+          metadata: null
+        }
+      })
+    }
+    this.model.inbox.items.splice(index, 1);
   }
 }

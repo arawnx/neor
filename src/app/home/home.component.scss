@@ -1,5 +1,18 @@
+$navbar-width: 250px;
+
 div {
     width: 100%;
     height: 100%;
     display: flex;
+}
+
+app-navbar {
+    flex-grow: 0;
+    min-width: $navbar-width;
+}
+
+app-destination {
+    flex-grow: 1;
+    overflow: scroll;
+    max-width: calc(100% - $navbar-width);
 }
