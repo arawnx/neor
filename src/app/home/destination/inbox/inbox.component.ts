@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, HostListener } from '@angular/core';
 import * as fas from '@fortawesome/free-solid-svg-icons';
-import { Model } from '../interfaces/model';
+import { Model } from '../../interfaces/model';
+
+// TODO: Refactor this into a generic component used by every simple-list-destination
 
 @Component({
   selector: 'app-inbox',
@@ -34,14 +36,22 @@ export class InboxComponent implements OnInit {
 
   organizeItem(evt, dest: string, index: number) {
     evt.stopPropagation();
-    if(dest === 'archive') {
-      this.model.archive.items.unshift({
-        name: this.model.inbox.items[index].name,
-        history: {
-          prevDest: 'inbox',
-          metadata: null
-        }
-      })
+    const item = this.model.inbox.items[index];
+    switch(dest) {
+      case 'archive':
+        this.model.archive.items.unshift({
+          name: item.name,
+          history: {
+            prevDest: 'inbox',
+            metadata: null
+          }
+        })
+        break;
+      case 'next-actions':
+        this.model["next-actions"].items.unshift({
+          name: item.name
+        });
+        break;
     }
     this.model.inbox.items.splice(index, 1);
   }

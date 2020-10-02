@@ -5,5 +5,11 @@
     <app-archive
         [(model)]="this.model"
         *ngIf="activeDest === 'archive'"></app-archive>
+    <app-next-actions
+        [(model)]="this.model"
+        *ngIf="activeDest === 'next-actions'"></app-next-actions>
+    <app-projects
+        [(model)]="this.model"
+        *ngIf="activeDest === 'projects'"></app-projects>
     <!-- TODO: Add other destination code -->
 </div>

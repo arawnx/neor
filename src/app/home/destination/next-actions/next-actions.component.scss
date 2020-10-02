@@ -1,6 +1,12 @@
+$highlight: rgba(255,255,255,0.3);
+
 ul {
     padding: 0;
     margin: 0;
+}
+
+.highlight {
+    background-color: $highlight;
 }
 
 li {
@@ -9,10 +15,25 @@ li {
     margin: 0;
     padding: 2em 2em 2em 2em;
     width: calc(100% - 4em);
+
+    &:hover {
+        @extend .highlight;
+    }
 }
 
-fa-icon {
-    pointer-events: none;
+button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+
+    &#add {
+        margin: 2em 0 2em 2em;
+    }
+
+    &:hover {
+        color: lighten($color: black, $amount: 33);
+    }
 }
 
 .organizeIcons {
@@ -26,17 +47,6 @@ fa-icon {
     }
 }
 
-button {
-    border: none;
-    background-color: transparent;
-    outline: none;
-    cursor: pointer;
-
-    &:hover {
-        color: lighten($color: black, $amount: 33);
-    }
-}
-
 .name {
     display: block;
     font-size: 18px;
@@ -47,13 +57,6 @@ button {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.subtitle {
-    display: inline-block;
-    font-size: 14px;
-    background-color: rgba(0,0,0,0.1);
-    border-radius: 0.5;
 }
 
 .flexbox {

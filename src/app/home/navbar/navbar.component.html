@@ -1,5 +1,5 @@
 <div>
-    <ul (click)="changeDestination($event)" *ngFor="let dest of dests">
-        <li [class.is-selected]="activeDest === dest.name">{{ dest.name | uppercase }} <fa-icon size="lg" (click)="false" [icon]="dest.icon"></fa-icon></li>
+    <ul (click)="changeDestination($event)">
+        <li *ngFor="let dest of dests" [class.is-selected]="activeDest === dest.name">{{ dest.name | uppercase  }} <fa-icon size="lg" (click)="false" [icon]="dest.icon"></fa-icon></li>
     </ul>
 </div>

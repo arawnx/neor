@@ -10,12 +10,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from '../shared/shared.module';
 import { DestinationComponent } from './destination/destination.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { InboxComponent } from './inbox/inbox.component';
+import { InboxComponent } from './destination/inbox/inbox.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
-import { ArchiveComponent } from './archive/archive.component';
+import { ArchiveComponent } from './destination/archive/archive.component';
+import { NextActionsComponent } from './destination/next-actions/next-actions.component';
+import { ProjectsComponent } from './destination/projects/projects.component';
+import { ItemComponent } from './destination/item/item.component';
 
 @NgModule({
-  declarations: [HomeComponent, NavbarComponent, DestinationComponent, InboxComponent, AutofocusDirective, ArchiveComponent],
+  declarations: [HomeComponent, NavbarComponent, DestinationComponent, InboxComponent, AutofocusDirective, ArchiveComponent, NextActionsComponent, ProjectsComponent, ItemComponent],
   imports: [CommonModule, SharedModule, HomeRoutingModule, FontAwesomeModule, CoreModule, FormsModule],
 })
 export class HomeModule {}

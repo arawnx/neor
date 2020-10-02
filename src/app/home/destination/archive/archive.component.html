@@ -3,7 +3,7 @@
         <li *ngFor="let item of this.model.archive.items; index as index">
             <div class="flexbox">
                 <div class="name">
-                    {{ item.name }} <i>(from {{ item.history.prevDest | uppercase }}</i>)
+                    {{ item.name }} <i>(from {{ item.history.prevDest | uppercase }})</i>
                 </div>
                 <div class="organizeIcons">
                     <button (click)="restoreItem($event, index)">

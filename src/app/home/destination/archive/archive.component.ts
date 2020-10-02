@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, EventEmitter, Output, HostListener } from '@angular/core';
 import * as fas from '@fortawesome/free-solid-svg-icons';
-import { Model } from '../interfaces/model';
+import { Model } from '../../interfaces/model';
 
 @Component({
   selector: 'app-archive',

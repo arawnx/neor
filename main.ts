@@ -54,15 +54,13 @@ function createWindow(): BrowserWindow {
         items: []
       },
       archive: {
-        items: [
-          {
-            name: "Example archive item",
-            history: {
-              previousDest: 'inbox',
-              metadata: undefined
-            }
-          }
-        ]
+        items: []
+      },
+      'next-actions': {
+        items: []
+      },
+      projects: {
+          items: []
       }
     };
     if(fs.existsSync(modelPath)) {
