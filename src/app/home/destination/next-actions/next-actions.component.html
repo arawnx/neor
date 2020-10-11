@@ -8,4 +8,16 @@
             </app-item>
         </li>
     </ul>
+    <ng-container *ngFor="let project of this.model.projects.items; index as pIndex">
+        <h1>{{ project.name }} <i>PROJECT</i></h1>
+        <ul>
+            <li *ngFor="let item of project.nextActions; index as index">
+                <app-item [label]="item.name">
+                    <button (click)="this.model.projects.items[pIndex].nextActions.splice(index,1)">
+                        <fa-icon size="lg" [icon]="fas.faTrash"></fa-icon>
+                    </button>
+                </app-item>
+            </li>
+        </ul>
+    </ng-container>
 </div>

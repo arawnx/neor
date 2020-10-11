@@ -59,12 +59,33 @@ function createWindow(): BrowserWindow {
       'next-actions': {
         items: []
       },
+      waiting: {
+        items: []
+      },
+      'weekly-review': {
+        clear: 
+        `* COLLECT LOOSE MATERIALS\n* GET INBOX TO ZERO\n* EMPTY YOUR HEAD`,
+        current: 
+        `* REVIEW NEXT ACTIONS\n* REVIEW PREVIOUS CALENDAR DATA\n* REVIEW UPCOMING CALENDAR\n* REVIEW WAITING-FOR LIST\n* REVIEW PROJECT LIST`,
+        creative:
+        `* REVIEW SOMEDAY/MAYBE LIST\n* BE CREATIVE`
+      },
+      'someday-maybe': {
+        items: []
+      },
+      calendar: {
+        items: []
+      },
       projects: {
-          items: []
+        items: []
       }
     };
     if(fs.existsSync(modelPath)) {
       console.log('Program model exists...');
+      const data = fs.readFileSync(modelPath, 'utf8');
+      if(Object.keys(JSON.parse(data)) !== Object.keys(modprotype)) {
+        fs.writeFileSync(modelPath, JSON.stringify(modprotype));
+      }
     } else {
       console.log('Program model does not exist...');
       // TODO: Model migration code

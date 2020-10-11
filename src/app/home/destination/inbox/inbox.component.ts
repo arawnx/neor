@@ -2,8 +2,6 @@ import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, 
 import * as fas from '@fortawesome/free-solid-svg-icons';
 import { Model } from '../../interfaces/model';
 
-// TODO: Refactor this into a generic component used by every simple-list-destination
-
 @Component({
   selector: 'app-inbox',
   templateUrl: './inbox.component.html',
@@ -20,6 +18,7 @@ export class InboxComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { }
+
   addItem() {
     this.model.inbox.items.push({
       name: ""
@@ -36,7 +35,7 @@ export class InboxComponent implements OnInit {
 
   organizeItem(evt, dest: string, index: number) {
     evt.stopPropagation();
-    const item = this.model.inbox.items[index];
+    const item = this.model.inbox.items.splice(index, 1)[0];
     switch(dest) {
       case 'archive':
         this.model.archive.items.unshift({
@@ -52,7 +51,37 @@ export class InboxComponent implements OnInit {
           name: item.name
         });
         break;
+      case 'waiting':
+        this.model.waiting.items.unshift({
+          name: item.name
+        });
+        break;
+      case 'someday-maybe':
+        this.model["someday-maybe"].items.unshift({
+          name: item.name
+        });
+        break;
+      case 'projects':
+        this.model.projects.items.unshift({
+          name: item.name,
+          purpPrinciples: "",
+          vision: "",
+          brainstorm: "",
+          organizing: "",
+          nextActions: []
+        });
+        break;
+      case 'calendar': 
+        const today = new Date();
+        this.model.calendar.items.unshift({
+          name: item.name,
+          date: {
+            year: today.getFullYear(),
+            month: today.getMonth(),
+            day: today.getDate()
+          }
+        });
+        break;
     }
-    this.model.inbox.items.splice(index, 1);
   }
 }

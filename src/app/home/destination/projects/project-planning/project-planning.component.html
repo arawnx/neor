@@ -1,0 +1,28 @@
+<div>
+    <h1>Purpose & Principles</h1>
+    <textarea autosize [(ngModel)]="this.model.projects.items[this.projectId].purpPrinciples" [minRows]="2" placeholder="* Purpose..."></textarea>
+    <h1>Outcome Vision</h1>
+    <textarea autosize [(ngModel)]="this.model.projects.items[this.projectId].vision" [minRows]="2" placeholder="Vision..."></textarea>
+    <h1>Brainstorming</h1>
+    <textarea autosize [(ngModel)]="this.model.projects.items[this.projectId].brainstorm" [minRows]="2" placeholder="* Random idea I had..."></textarea>
+    <h1>Organizing</h1>
+    <textarea autosize [(ngModel)]="this.model.projects.items[this.projectId].organizing" [minRows]="2" placeholder="* Organized ideas I've had"></textarea>
+    <h1>Next-Actions</h1>
+    <ng-container *ngFor="let item of this.model.projects.items[this.projectId].nextActions; index as index">
+        <app-item 
+            (click)="currentlyEditing = index"
+            [label]="item.name"
+            *ngIf="currentlyEditing !== index">
+            <button (click)="this.model.projects.items[this.projectId].nextActions.splice(index,1)">
+                <fa-icon size="lg" [icon]="fas.faTrash"></fa-icon>
+            </button>
+        </app-item>
+        <input 
+            *ngIf="currentlyEditing === index" 
+            appAutofocus 
+            (blur)="clearEdits()"
+            (keyup.enter)="clearEdits()"
+            [(ngModel)]="item.name">
+    </ng-container>
+    <button id="add" (click)="addItem()"><fa-icon size="lg" [icon]="fas.faPlus"></fa-icon></button>
+</div>

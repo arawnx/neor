@@ -1,0 +1,24 @@
+<div>
+    <ul>
+        <ng-container *ngFor="let item of this.model.calendar.items; index as index">
+            <app-item 
+                [label]="item.name"
+                (click)="currentlyEditing = index">
+                <i>{{ item.date.year }}/{{ item.date.month }}/{{ item.date.day }}</i>
+                <button (click)="this.model.calendar.items.splice(index, 1)">
+                    <fa-icon size="lg" [icon]="fas.faTrash"></fa-icon>
+                </button>
+            </app-item>
+        </ng-container>
+    </ul>
+    <div 
+        class="modal-background"
+        *ngIf="currentlyEditing !== undefined">
+        <div class="modal">
+            <input type="number" [(ngModel)]="this.model.calendar.items[this.currentlyEditing].date.year">
+            <input type="number" min="1" max="12" [(ngModel)]="this.model.calendar.items[this.currentlyEditing].date.month">
+            <input type="number" min="1" max="{{ this.daysInMonth(this.model.calendar.items[this.currentlyEditing].date.year, this.model.calendar.items[this.currentlyEditing].date.month) }}" [(ngModel)]="this.model.calendar.items[this.currentlyEditing].date.day">
+            <input type="submit" (click)="currentlyEditing = undefined; sortCalendar()">
+        </div>
+    </div>
+</div>

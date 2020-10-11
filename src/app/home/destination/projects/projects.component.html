@@ -1,7 +1,27 @@
 <div>
-    <ul>
-        <li *ngFor="let project of this.model.projects; index as index">
-            
-        </li>
+    <ul *ngIf="activePlanning === undefined">
+        <ng-container *ngFor="let project of model.projects.items; index as index">
+            <app-item 
+                *ngIf="currentlyEditing !== index"
+                [label]="project.name"
+                (click)="currentlyEditing = index">
+                <button (click)="activePlanning = index">
+                    <fa-icon size="lg" [icon]="fas.faFolderOpen"></fa-icon>
+                </button>
+                <button (click)="archiveProject($event, index)">
+                    <fa-icon size="lg" [icon]="fas.faArchive"></fa-icon>
+                </button>
+            </app-item>
+            <input 
+                *ngIf="currentlyEditing === index"
+                appAutofocus 
+                (blur)="clearEdits()" (keyup.enter)="clearEdits()" 
+                [(ngModel)]="project.name">
+        </ng-container>
     </ul>
+    <app-project-planning 
+        *ngIf="activePlanning !== undefined"
+        [(model)]="model"
+        [projectId]="activePlanning">
+    </app-project-planning>
 </div>

@@ -1,0 +1,15 @@
+<div>
+    <ul>
+        <ng-container *ngFor="let item of this.model['someday-maybe'].items; index as index">
+            <app-item
+                [label]="item.name">
+                <button (click)="activateProject(index)">
+                    <fa-icon size="lg" [icon]="fas.faClipboardList"></fa-icon>
+                </button>
+                <button (click)="archive(index)">
+                    <fa-icon size="lg" [icon]="fas.faArchive"></fa-icon>
+                </button>
+            </app-item>
+        </ng-container>
+    </ul>
+</div>

@@ -1,0 +1,11 @@
+<div>
+    <ul>
+        <li *ngFor="let item of this.model.waiting.items; index as index">
+            <app-item [label]="item.name">
+                <button (click)="archiveItem(index)">
+                    <fa-icon size="lg" [icon]="fas.faArchive"></fa-icon>
+                </button>
+            </app-item>
+        </li>
+    </ul>
+</div>

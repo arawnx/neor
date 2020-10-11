@@ -1,3 +1,30 @@
+$highlight: rgba(255,255,255,0.3);
+
+li {
+    font-size: 18px;
+    cursor: pointer;
+    list-style: none;
+    margin: 0;
+    padding: 2em 2em 2em 2em;
+    width: calc(100% - 4em);
+
+    &:hover {
+        background-color: $highlight;
+    }
+}
+
+:host ::ng-deep button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    padding: 0.5em;
+
+    &:hover {
+        color: lighten($color: black, $amount: 33);
+    }
+}
+
 .flexbox {
     width: 100%;
     display: inline-flex;
@@ -8,7 +35,6 @@
 
 .name {
     display: block;
-    font-size: 18px;
     user-select: none;
     flex-shrink: 10;
     flex-grow: 0;

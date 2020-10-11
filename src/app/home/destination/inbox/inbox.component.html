@@ -1,28 +1,32 @@
 <div>
     <ul>
-        <li *ngFor="let item of this.model.inbox.items; index as index">
-            <app-item *ngIf="currentlyEditing !== index" [label]="item.name">
-                <button (click)="organizeItem($event,'archive',index)">
-                    <fa-icon size="lg" [icon]="fas.faArchive"></fa-icon>
+        <ng-container *ngFor="let item of this.model.inbox.items; index as index">
+            <app-item (click)="currentlyEditing = index" [label]="item.name" *ngIf="currentlyEditing !== index">
+                <button (click)="organizeItem($event,'next-actions',index)">
+                    <fa-icon size="lg" [icon]="fas.faTasks"></fa-icon>
                 </button>
-                <button (click)="organizeItem($event,'weekly-review',index)">
-                    <fa-icon size="lg" [icon]="fas.faMountain"></fa-icon>
-                </button>
-                <button (click)="organizeItem($event,'waiting',index)">
-                    <fa-icon size="lg" [icon]="fas.faUserClock"></fa-icon>
+                <button (click)="organizeItem($event,'projects',index)">
+                    <fa-icon size="lg" [icon]="fas.faClipboardList"></fa-icon>
                 </button>
                 <button (click)="organizeItem($event,'calendar',index)">
                     <fa-icon size="lg" [icon]="fas.faCalendar"></fa-icon>
                 </button>
-                <button (click)="organizeItem($event,'projects',index)">
-                    <fa-icon size="lg" [icon]="fas.faFolderOpen"></fa-icon>
+                <button (click)="organizeItem($event,'waiting',index)">
+                    <fa-icon size="lg" [icon]="fas.faUserClock"></fa-icon>
                 </button>
-                <button (click)="organizeItem($event,'next-actions',index)">
-                    <fa-icon size="lg" [icon]="fas.faTasks"></fa-icon>
+                <button (click)="organizeItem($event,'someday-maybe',index)">
+                    <fa-icon size="lg" [icon]="fas.faLightbulb"></fa-icon>
+                </button>
+                <button (click)="organizeItem($event,'archive',index)">
+                    <fa-icon size="lg" [icon]="fas.faArchive"></fa-icon>
                 </button>
             </app-item>
-            <input *ngIf="currentlyEditing === index" appAutofocus (blur)="clearEdits()" (keyup.enter)="clearEdits()" [(ngModel)]="item.name">
-        </li>
+            <input 
+                *ngIf="currentlyEditing === index" 
+                appAutofocus 
+                (blur)="clearEdits()" (keyup.enter)="clearEdits()" 
+                [(ngModel)]="item.name">
+        </ng-container>
     </ul>
     <button id="add" (click)="addItem()"><fa-icon size="lg" [icon]="fas.faPlus"></fa-icon></button>
 </div>

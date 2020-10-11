@@ -11,5 +11,16 @@
     <app-projects
         [(model)]="this.model"
         *ngIf="activeDest === 'projects'"></app-projects>
-    <!-- TODO: Add other destination code -->
+    <app-waiting
+        [(model)]="this.model"
+        *ngIf="activeDest === 'waiting'"></app-waiting>
+    <app-weekly-review 
+        [(model)]="this.model"
+        *ngIf="activeDest === 'weekly-review'"></app-weekly-review>
+    <app-someday-maybe
+        [(model)]="this.model"
+        *ngIf="activeDest === 'someday-maybe'"></app-someday-maybe>
+    <app-calendar
+        [(model)]="this.model"
+        *ngIf="activeDest === 'calendar'"></app-calendar>
 </div>

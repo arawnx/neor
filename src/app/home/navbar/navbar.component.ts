@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
 		},
 		{
 			name: "projects",
-			icon: fas.faFolderOpen
+			icon: fas.faClipboardList
 		},
 		{
 			name: "calendar",
@@ -36,6 +36,10 @@ export class NavbarComponent implements OnInit {
 		{
 			name: "weekly-review",
 			icon: fas.faMountain
+		},
+		{
+			name: "someday-maybe",
+			icon: fas.faLightbulb
 		},
 		{
 			name: "archive",

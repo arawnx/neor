@@ -19,9 +19,15 @@ export class ArchiveComponent implements OnInit {
 
   restoreItem(evt, index) {
     evt.stopPropagation();
-    const item = this.model.archive.items[index];
-    this.model.archive.items.splice(index, 1);
-    this.model[item.history.prevDest].items.push(item);
+    const item = this.model.archive.items.splice(index, 1)[0];
+    if(item.history.prevDest === 'projects') {
+      this.model[item.history.prevDest].items.push({
+        name: item.name,
+        ...item.history.metadata // TODO: Check if this works
+      })
+    } else {
+      this.model[item.history.prevDest].items.push(item);
+    }
   }
 
   deletePermanently(evt, index) {
