@@ -82,9 +82,9 @@ function createWindow(): BrowserWindow {
     };
     if(fs.existsSync(modelPath)) {
       console.log('Program model exists...');
+      // TODO: Model migration code
     } else {
       console.log('Program model does not exist...');
-      // TODO: Model migration code
       fs.appendFileSync(modelPath, JSON.stringify(modprotype));
     }
   } else {

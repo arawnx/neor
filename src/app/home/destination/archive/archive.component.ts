@@ -23,7 +23,7 @@ export class ArchiveComponent implements OnInit {
     if(item.history.prevDest === 'projects') {
       this.model[item.history.prevDest].items.push({
         name: item.name,
-        ...item.history.metadata // TODO: Check if this works
+        ...item.history.metadata 
       })
     } else {
       this.model[item.history.prevDest].items.push(item);
