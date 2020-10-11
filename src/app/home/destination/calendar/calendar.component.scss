@@ -10,6 +10,24 @@ i {
     border-radius: 0.5em;
 }
 
+@keyframes darken {
+    0% {
+        background-color: rgba(0,0,0,0.01);
+    }
+    100% {
+        background-color: rgba(0,0,0,0.03);
+    }
+}
+
+@keyframes lighten {
+    0% {
+        background-color: rgba(0,0,0,0.02);
+    }
+    100% {
+        background-color: rgba(0,0,0,0.01);
+    }
+}
+
 .modal-background {
     position: fixed;
     top: 0;
@@ -23,5 +41,41 @@ i {
         height: 10%;
         bottom: 0;
         background-color: white;
+
+        input[type=number] {
+            animation: lighten 30ms forwards ease-in-out;
+            height: 100%;
+            padding: 0 2em 0 2em;
+            border: none;
+            vertical-align: middle;
+            outline: none;
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                opacity: 1;
+                padding: 12px;
+            }
+
+            &:hover {
+                animation: darken 30ms forwards ease-in-out;
+            }
+
+            &:focus {
+                animation: darken 30ms forwards ease-in-out;
+            }
+        }
+
+        input[type=submit] {
+            border: none;
+            border-radius: 0.5em;
+            padding: 16px;
+            margin-left: 1em;
+            background-color: rgba(0,0,0,0.05);
+            outline: none;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 }

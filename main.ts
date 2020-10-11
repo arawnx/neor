@@ -82,10 +82,6 @@ function createWindow(): BrowserWindow {
     };
     if(fs.existsSync(modelPath)) {
       console.log('Program model exists...');
-      const data = fs.readFileSync(modelPath, 'utf8');
-      if(Object.keys(JSON.parse(data)) !== Object.keys(modprotype)) {
-        fs.writeFileSync(modelPath, JSON.stringify(modprotype));
-      }
     } else {
       console.log('Program model does not exist...');
       // TODO: Model migration code
@@ -137,16 +133,16 @@ try {
 }
 
 ipcMain.on('read-model', (evt, arg) => {
-  console.log('Read model');
+  // console.log('Read model');
   fs.readFile(modelPath, 'utf8', (_, data) => {
-    console.log('Reply model');
-    console.log(`Read: ${data}`)
+    // console.log('Reply model');
+    // console.log(`Read: ${data}`)
     evt.reply('reply-model', JSON.parse(data));
   });
 });
 
 ipcMain.on('save-model', (_, model) => {
   fs.writeFile(modelPath, model, () => {
-    console.log(`New model successfully saved as: \n${model}`);
+    // console.log(`New model successfully saved as: \n${model}`);
   });
 });
