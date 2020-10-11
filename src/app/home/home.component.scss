@@ -14,5 +14,5 @@ app-navbar {
 app-destination {
     flex-grow: 1;
     overflow: scroll;
-    max-width: calc(100% - $navbar-width);
+    max-width: calc(100% - #{$navbar-width});
 }
