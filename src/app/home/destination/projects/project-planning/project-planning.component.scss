@@ -1,5 +1,11 @@
 $highlight: rgba(255,255,255,0.3);
 
+h2 {
+    user-select: none;
+    cursor: default;
+    margin-left: 32px;
+}
+
 h1 {
     user-select: none;
     cursor: default;

@@ -2,15 +2,16 @@
     <button (click)="this.exitPlanning.emit()" id="back">
         <fa-icon size="2x" [icon]="fas.faLongArrowAltLeft"></fa-icon>
     </button>
-    <h1>Purpose & Principles</h1>
+    <h1>{{ this.model.projects.items[this.projectId].name }}</h1>
+    <h2>Purpose & Principles</h2>
     <textarea autosize [(ngModel)]="this.model.projects.items[this.projectId].purpPrinciples" [minRows]="2" placeholder="* Purpose..."></textarea>
-    <h1>Outcome Vision</h1>
+    <h2>Outcome Vision</h2>
     <textarea autosize [(ngModel)]="this.model.projects.items[this.projectId].vision" [minRows]="2" placeholder="Vision..."></textarea>
-    <h1>Brainstorming</h1>
+    <h2>Brainstorming</h2>
     <textarea autosize [(ngModel)]="this.model.projects.items[this.projectId].brainstorm" [minRows]="2" placeholder="* Random idea I had..."></textarea>
-    <h1>Organizing</h1>
+    <h2>Organizing</h2>
     <textarea autosize [(ngModel)]="this.model.projects.items[this.projectId].organizing" [minRows]="2" placeholder="* Organized ideas I've had"></textarea>
-    <h1>Next-Actions</h1>
+    <h2>Next-Actions</h2>
     <ng-container *ngFor="let item of this.model.projects.items[this.projectId].nextActions; index as index">
         <app-item 
             (click)="currentlyEditing = index"
