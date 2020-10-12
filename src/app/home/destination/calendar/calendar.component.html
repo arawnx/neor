@@ -19,7 +19,6 @@
             <input type="number" min="1" max="12" [(ngModel)]="this.model.calendar.items[this.currentlyEditing].date.month">
             <input type="number" min="1" max="{{ this.daysInMonth(this.model.calendar.items[this.currentlyEditing].date.year, this.model.calendar.items[this.currentlyEditing].date.month) }}" [(ngModel)]="this.model.calendar.items[this.currentlyEditing].date.day">
             <input type="submit" (click)="currentlyEditing = undefined; sortCalendar()">
-            <!-- TODO: Prevent submitting empty date -->
         </div>
     </div>
 </div>

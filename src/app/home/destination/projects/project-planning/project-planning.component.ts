@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component,EventEmitter,Input, OnInit, Output } from '@angular/core';
 import * as fas from '@fortawesome/free-solid-svg-icons';
 import { Model } from 'app/home/interfaces/model';
 
@@ -11,6 +11,7 @@ import { Model } from 'app/home/interfaces/model';
 export class ProjectPlanningComponent implements OnInit {
   @Input() model: Model;
   @Input() projectId: number;
+  @Output() exitPlanning = new EventEmitter();
 
   fas = fas;
 

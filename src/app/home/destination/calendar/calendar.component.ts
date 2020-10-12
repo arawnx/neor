@@ -21,6 +21,12 @@ export class CalendarComponent implements OnInit {
   }
 
   sortCalendar() {
+    this.model.calendar.items.forEach(item => {
+      if(item.date.day === null) item.date.day = new Date().getDate();
+      if(item.date.month === null) item.date.month = new Date().getMonth();
+      if(item.date.year === null) item.date.year = new Date().getFullYear();
+    });
+
     this.model.calendar.items.sort((a, b) => {
       const sumDate = {
         year: a.date.year - b.date.year,

@@ -1,5 +1,4 @@
 <div>
-    <!-- TODO: Add back button -->
     <ul *ngIf="activePlanning === undefined">
         <ng-container *ngFor="let project of model.projects.items; index as index">
             <app-item 
@@ -23,6 +22,7 @@
     <app-project-planning 
         *ngIf="activePlanning !== undefined"
         [(model)]="model"
-        [projectId]="activePlanning">
+        [projectId]="activePlanning"
+        (exitPlanning)="activePlanning = undefined">
     </app-project-planning>
 </div>

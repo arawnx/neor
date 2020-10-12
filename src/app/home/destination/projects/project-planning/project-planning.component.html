@@ -1,4 +1,7 @@
 <div>
+    <button (click)="this.exitPlanning.emit()" id="back">
+        <fa-icon size="2x" [icon]="fas.faLongArrowAltLeft"></fa-icon>
+    </button>
     <h1>Purpose & Principles</h1>
     <textarea autosize [(ngModel)]="this.model.projects.items[this.projectId].purpPrinciples" [minRows]="2" placeholder="* Purpose..."></textarea>
     <h1>Outcome Vision</h1>
