@@ -4,7 +4,8 @@
             <app-item 
                 *ngIf="currentlyEditing !== index"
                 [label]="project.name.concat(' | ' + project.nextActions.length)"
-                (click)="currentlyEditing = index">
+                (click)="currentlyEditing = index"
+                (contextmenu)="activePlanning = index">
                 <button (click)="activePlanning = index">
                     <fa-icon size="lg" [icon]="fas.faFolderOpen"></fa-icon>
                 </button>
