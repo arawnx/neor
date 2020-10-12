@@ -3,7 +3,7 @@
         <ng-container *ngFor="let project of model.projects.items; index as index">
             <app-item 
                 *ngIf="currentlyEditing !== index"
-                [label]="project.name"
+                [label]="project.name.concat(' | ' + project.nextActions.length)"
                 (click)="currentlyEditing = index">
                 <button (click)="activePlanning = index">
                     <fa-icon size="lg" [icon]="fas.faFolderOpen"></fa-icon>
