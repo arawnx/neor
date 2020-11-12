@@ -10,6 +10,8 @@ import * as fas from '@fortawesome/free-solid-svg-icons';
 export class SomedayMaybeComponent implements OnInit {
   @Input() model: Model;
 
+  currentlyEditing: number;
+
   fas = fas;
 
   constructor() { }
@@ -37,6 +39,13 @@ export class SomedayMaybeComponent implements OnInit {
         prevDest: 'someday-maybe',
         metadata: undefined
       }
+    });
+  }
+
+  clearEdits() {
+    this.currentlyEditing = undefined;
+    this.model["someday-maybe"].items = this.model["someday-maybe"].items.filter(item => {
+      return item.name.trim() !== "";
     });
   }
 }

@@ -2,6 +2,8 @@
     <ul>
         <ng-container *ngFor="let item of this.model['someday-maybe'].items; index as index">
             <app-item
+                (click)="this.currentlyEditing = index"
+                *ngIf="this.currentlyEditing !== index"
                 [label]="item.name">
                 <button (click)="activateProject(index)">
                     <fa-icon size="lg" [icon]="fas.faClipboardList"></fa-icon>
@@ -10,6 +12,11 @@
                     <fa-icon size="lg" [icon]="fas.faArchive"></fa-icon>
                 </button>
             </app-item>
+            <input 
+                *ngIf="currentlyEditing === index" 
+                appAutofocus 
+                (blur)="clearEdits()" (keyup.enter)="clearEdits()" 
+                [(ngModel)]="item.name">
         </ng-container>
     </ul>
 </div>

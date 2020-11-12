@@ -1,4 +1,22 @@
+$highlight: rgba(255,255,255,0.3);
+
 ul {
     padding: 0;
     margin: 0;
+}
+
+input {
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 2em 2em 2em 2em;
+    width: 100%;
+
+    &:hover {
+        background-color: $highlight;
+    }
 }
